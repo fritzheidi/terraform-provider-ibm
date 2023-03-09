@@ -37,6 +37,11 @@ variable "admins" {
   description = "The list of administrators for the instance crypto units. "
 }
 
+variable "key_ring_id_list" {
+  type = list(string)
+  description = "List of HPCS Key Ring IDs"
+}
+
 # Key name that has to be created on the HPCS Instance
 variable "key_name" {
   type        = string

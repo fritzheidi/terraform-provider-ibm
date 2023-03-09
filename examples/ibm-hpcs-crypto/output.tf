@@ -1,6 +1,8 @@
 output "InstanceGUID" {
   value = ibm_hpcs.hpcs.guid
 }
-output "keyID" {
-  value = ibm_kms_key.key.id
+output "keyIDs" {
+  value = {
+    for key, value in ibm_kms_key.key : key => value.id
+  }
 }

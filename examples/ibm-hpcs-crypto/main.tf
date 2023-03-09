@@ -17,7 +17,20 @@ resource ibm_hpcs hpcs {
       token = admins.value.token
     }
   }
+  lifecycle {
+    ignore_changes = [signature_threshold,revocation_threshold,admins]
+  }
 }
+
+# --------------------------------
+# Creating Keystores for HPCS Instance
+# --------------------------------
+resource "ibm_kms_key_rings" "key_ring" {
+  instance_id = ibm_hpcs.hpcs.guid
+  for_each = toset(var.key_ring_id_list)
+  key_ring_id = each.key
+}
+
 # --------------------------------
 # Creating Keys for HPCS Instance
 # --------------------------------
@@ -27,4 +40,6 @@ resource "ibm_kms_key" "key" {
   key_name     = var.key_name
   standard_key = false
   force_delete = true
+  for_each = ibm_kms_key_rings.key_ring
+  key_ring_id = each.value.key_ring_id
 }
