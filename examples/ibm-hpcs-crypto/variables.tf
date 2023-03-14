@@ -33,3 +33,11 @@ variable "network_access" {
   description = "Network access to your service instance"
   default     = "public-and-private"
 }
+variable "key_ring_id_list" {
+  type = list(string)
+  description = "List of HPCS Key Ring IDs"
+}
+variable "key_name" {
+  type        = string
+  description = "HPCS Key Name"
+}

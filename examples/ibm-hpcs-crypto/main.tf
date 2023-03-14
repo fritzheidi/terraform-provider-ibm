@@ -19,3 +19,18 @@ resource ibm_resource_instance hpcs {
    // ekm_id:       "6b4ca546-0117-4d3e-9786-a0323c1d9b11"
  }
 }
+
+resource "ibm_kms_key_rings" "key_ring" {
+  instance_id = ibm_resource_instance.hpcs.guid
+  for_each = toset(var.key_ring_id_list)
+  key_ring_id = each.key
+}
+
+resource "ibm_kms_key" "key" {
+  instance_id  = ibm_resource_instance.hpcs.guid
+  key_name     = var.key_name
+  standard_key = false
+  force_delete = true
+  for_each = ibm_kms_key_rings.key_ring
+  key_ring_id = each.value.key_ring_id
+}
