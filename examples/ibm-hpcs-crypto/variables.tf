@@ -28,3 +28,8 @@ variable "units" {
   description = "No of crypto units that has to be attached to the instance."
   default     = 2
 }
+variable "network_access" {
+  type        = string
+  description = "Network access to your service instance"
+  default     = "public-and-private"
+}
