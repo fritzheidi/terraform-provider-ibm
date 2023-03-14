@@ -1,3 +1,3 @@
 output "InstanceGUID" {
-  value = ibm_hpcs.hpcs.guid
+  value = ibm_resource_instance.hpcs.guid
 }
