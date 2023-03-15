@@ -34,3 +34,35 @@ resource "ibm_kms_key" "key" {
   for_each = ibm_kms_key_rings.key_ring
   key_ring_id = each.value.key_ring_id
 }
+
+resource "ibm_iam_authorization_policy" "policy" {
+  roles      = [
+    "Reader",
+  ]
+
+  resource_attributes {
+    name     = "accountId"
+    operator = "stringEquals"
+    value    = var.account_id
+  }
+  resource_attributes {
+    name     = "serviceName"
+    operator = "stringEquals"
+    value    = var.source_service
+  }
+
+  subject_attributes {
+    name  = "accountId"
+    value = var.account_id
+  }
+  subject_attributes {
+    name  = "serviceName"
+    value = var.target_service
+  }
+
+  subject_attributes { 
+    name  =  "keyRing"
+    for_each = ibm_kms_key_rings.key_ring
+    value =  each.value.key_ring_id
+  }
+}

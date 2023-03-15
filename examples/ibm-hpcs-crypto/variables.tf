@@ -41,3 +41,15 @@ variable "key_name" {
   type        = string
   description = "HPCS Key Name"
 }
+variable "account_id" {
+  type        = string
+  description = "Account ID for cross account sharing"
+}
+variable "source_service" {
+  type        = string
+  description = "The source service name"
+}
+variable "target_service" {
+  type        = string
+  description = "The target service name"
+}
