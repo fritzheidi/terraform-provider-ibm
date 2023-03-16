@@ -62,7 +62,6 @@ resource "ibm_iam_authorization_policy" "policy" {
 
   subject_attributes { 
     name  =  "keyRing"
-    for_each = ibm_kms_key_rings.key_ring
-    value =  each.value.key_ring_id
+    value =  var.key_ring_id
   }
 }

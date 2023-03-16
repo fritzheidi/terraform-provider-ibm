@@ -53,3 +53,7 @@ variable "target_service" {
   type        = string
   description = "The target service name"
 }
+variable "key_ring_id" {
+  type = list(string)
+  description = "HPCS Key Ring ID"
+}
