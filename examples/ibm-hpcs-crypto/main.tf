@@ -57,9 +57,4 @@ resource "ibm_iam_authorization_policy" "policy" {
     name  = "serviceName"
     value = var.target_service
   }
-
-  subject_attributes { 
-    name  =  "keyRing"
-    value =  var.key_ring_id
-  }
 }
