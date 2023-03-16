@@ -42,19 +42,19 @@ resource "ibm_iam_authorization_policy" "policy" {
 
   resource_attributes {
     name     = "accountId"
-    value    = var.source_account_id
+    value    = var.target_account_id
   }
   resource_attributes {
     name     = "serviceName"
-    value    = var.source_service
+    value    = var.target_service
   }
 
   subject_attributes {
     name  = "accountId"
-    value = var.target_account_id
+    value = var.source_account_id
   }
   subject_attributes {
     name  = "serviceName"
-    value = var.target_service
+    value = var.source_service
   }
 }
