@@ -60,7 +60,6 @@ resource "ibm_iam_authorization_policy" "policy" {
 
   subject_attributes { 
     name  =  "keyRing"
-    operator = "stringEquals"
     value =  var.key_ring_id
   }
 }
