@@ -42,18 +42,16 @@ resource "ibm_iam_authorization_policy" "policy" {
 
   resource_attributes {
     name     = "accountId"
-    operator = "stringEquals"
-    value    = var.account_id
+    value    = var.source_account_id
   }
   resource_attributes {
     name     = "serviceName"
-    operator = "stringEquals"
     value    = var.source_service
   }
 
   subject_attributes {
     name  = "accountId"
-    value = var.account_id
+    value = var.target_account_id
   }
   subject_attributes {
     name  = "serviceName"
@@ -62,6 +60,7 @@ resource "ibm_iam_authorization_policy" "policy" {
 
   subject_attributes { 
     name  =  "keyRing"
+    operator = "stringEquals"
     value =  var.key_ring_id
   }
 }
